@@ -10,6 +10,8 @@ Generate LaTeX Table with Alfred Workflow.
 
 Download and import `alfred-latex-table.alfredworkflow`.
 
+[Download Workflow File](https://github.com/Ye-0413/alfred-latex-table/raw/master/alfred-latex-table.alfredworkflow)
+
 ## Dependencies
 
 - [Alfred](https://www.alfredapp.com/)
