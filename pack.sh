@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
 
-go build
-zip alfred-markdown-table.alfredworkflow ./alfred-markdown-table ./info.plist ./icon.png
-rm ./alfred-markdown-table
+go build -o alfred-latex-table
+zip alfred-latex-table.alfredworkflow ./alfred-latex-table ./info.plist ./icon.png
+rm ./alfred-latex-table

@@ -1,16 +1,14 @@
 package main
 
 import (
-	"bytes"
 	"fmt"
 	"os"
 	"strconv"
 	"strings"
 
-	"github.com/crispgm/alfred-markdown-table/internal/namesgenerator"
+	"github.com/crispgm/alfred-latex-table/internal/namesgenerator"
 
 	aw "github.com/deanishe/awgo"
-	"github.com/olekukonko/tablewriter"
 )
 
 var (
@@ -20,7 +18,7 @@ var (
 func run() {
 	var (
 		colNum   int = 2
-		rowNum   int = 2
+		rowNum   int = 3
 		testData bool
 	)
 	argc := len(os.Args)
@@ -51,34 +49,72 @@ func run() {
 		}
 	}
 	wf.NewItem(getSubtitle(colNum, rowNum, testData)).
-		Arg(buildTable(colNum, rowNum, testData)).
+		Arg(buildLatexTable(colNum, rowNum, testData)).
 		Valid(true)
 	wf.SendFeedback()
 	return
 }
 
 func getSubtitle(colNum, rowNum int, testData bool) string {
-	subtitle := fmt.Sprintf("Generate a %dx%d table", colNum, rowNum)
+	subtitle := fmt.Sprintf("Generate a %dx%d LaTeX table", colNum, rowNum)
 	if testData {
 		subtitle += " with test data"
 	}
 	return subtitle
 }
 
-func buildTable(colNum, rowNum int, testData bool) string {
-	buf := new(bytes.Buffer)
+func buildLatexTable(colNum, rowNum int, testData bool) string {
+	var sb strings.Builder
 
-	table := tablewriter.NewWriter(buf)
+	// Begin table environment
+	sb.WriteString("\\begin{table}[htbp]\n")
+	sb.WriteString("\\centering\n")
 
-	table.SetHeader(generateRow(colNum, testData))
-	table.SetBorders(tablewriter.Border{Left: true, Top: false, Right: true, Bottom: false})
-	table.SetCenterSeparator("|")
-	for idx := 0; idx < rowNum; idx++ {
-		table.Append(generateRow(colNum, testData))
+	// Begin tabular environment with column specifications
+	sb.WriteString("\\begin{tabular}{")
+	for i := 0; i < colNum; i++ {
+		sb.WriteString("|c")
 	}
-	table.Render()
+	sb.WriteString("|}\n")
+	sb.WriteString("\\hline\n") // Top line
 
-	return buf.String()
+	// Generate header row
+	headerRow := generateRow(colNum, testData)
+	for i, cell := range headerRow {
+		sb.WriteString(cell)
+		if i < colNum-1 {
+			sb.WriteString(" & ")
+		} else {
+			sb.WriteString(" \\\\\n")
+			sb.WriteString("\\hline\n") // Line after header
+		}
+	}
+
+	// Generate data rows
+	for i := 0; i < rowNum; i++ {
+		row := generateRow(colNum, testData)
+		for j, cell := range row {
+			sb.WriteString(cell)
+			if j < colNum-1 {
+				sb.WriteString(" & ")
+			} else {
+				sb.WriteString(" \\\\")
+				// Only add \hline after the last row
+				if i == rowNum-1 {
+					sb.WriteString("\n\\hline")
+				}
+				sb.WriteString("\n")
+			}
+		}
+	}
+
+	// End environments
+	sb.WriteString("\\end{tabular}\n")
+	sb.WriteString("\\caption{}\n")
+	sb.WriteString("\\label{tab:}\n")
+	sb.WriteString("\\end{table}")
+
+	return sb.String()
 }
 
 func generateRow(colNum int, testData bool) []string {

@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>bundleid</key>
-	<string>com.crispgm.alfred_markdown_table</string>
+	<string>com.crispgm.alfred_latex_table</string>
 	<key>category</key>
 	<string>Tools</string>
 	<key>connections</key>
@@ -23,13 +23,13 @@
 		</array>
 	</dict>
 	<key>createdby</key>
-	<string>David Zhang</string>
+	<string>Ye Jia</string>
 	<key>description</key>
-	<string>com.crispgm.alfred_markdown_table</string>
+	<string>com.crispgm.alfred_latex_table</string>
 	<key>disabled</key>
 	<false/>
 	<key>name</key>
-	<string>Alfred Markdown Table</string>
+	<string>Alfred LaTeX Table</string>
 	<key>objects</key>
 	<array>
 		<dict>
@@ -46,7 +46,7 @@
 				<key>escaping</key>
 				<integer>102</integer>
 				<key>keyword</key>
-				<string>table</string>
+				<string>Latex Table</string>
 				<key>queuedelaycustom</key>
 				<integer>3</integer>
 				<key>queuedelayimmediatelyinitially</key>
@@ -58,15 +58,15 @@
 				<key>runningsubtext</key>
 				<string>Generating...</string>
 				<key>script</key>
-				<string>./alfred-markdown-table "$1"</string>
+				<string>./alfred-latex-table "$1"</string>
 				<key>scriptargtype</key>
 				<integer>1</integer>
 				<key>scriptfile</key>
 				<string></string>
 				<key>subtext</key>
-				<string>Cols, Rows, Row Width</string>
+				<string>Cols, Rows</string>
 				<key>title</key>
-				<string>Input markdown table size</string>
+				<string>Input LaTeX table size</string>
 				<key>type</key>
 				<integer>0</integer>
 				<key>withspace</key>
@@ -98,7 +98,7 @@
 		</dict>
 	</array>
 	<key>readme</key>
-	<string>Generate Markdown Table with Alfred Workflow.</string>
+	<string>Generate LaTeX Table with Alfred Workflow.</string>
 	<key>uidata</key>
 	<dict>
 		<key>11F5050D-2EDF-47B4-AAE8-B5E86233F618</key>
@@ -117,6 +117,6 @@
 		</dict>
 	</dict>
 	<key>webaddress</key>
-	<string>https://github.com/crispgm/alfred-markdown-table</string>
+	<string>https://github.com/crispgm/alfred-latex-table</string>
 </dict>
 </plist>
