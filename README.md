@@ -1,6 +1,7 @@
 # Alfred LaTeX Table
 
-Generate LaTeX Table with Alfred Workflow.
+Generate LaTeX Table with Alfred Workflow. 
+If you think this is useful, please  ❤️Star❤️ this project.
 
 ![screenshot](/screenshot.png)
 
